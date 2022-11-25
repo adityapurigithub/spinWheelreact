@@ -1,38 +1,78 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.circle__main {
+  height: 100vh;
+  background-color: #111;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+}
+.circle__outer {
+  min-height: 400px;
+  min-width: 400px;
+  border-radius: 50%;
+  background-color: wheat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 15px solid red;
+  position: relative;
+  overflow: hidden;
+  /* transition: 4s; */
 }
 
-.App-link {
-  color: #61dafb;
+.circle__outer div {
+  height: 50%;
+  width: 314px;
+  position: absolute;
+  clip-path: polygon(100% 0, 50% 100%, 0 0);
+  transform: translateX(-50%);
+  transform-origin: bottom;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  color: rgb(255, 255, 255);
+}
+.circle__outer .poly1 {
+  left: 50%;
+  background-color: aqua;
+}
+.circle__outer .poly2 {
+  transform: rotate(70deg);
+  background-color: rgb(0, 4, 255);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
+.circle__outer .poly3 {
+  transform: rotate(140deg);
+  background-color: rgb(106, 255, 0);
+}
+
+.circle__outer .poly4 {
+  transform: rotate(210deg);
+  background-color: rgb(80, 0, 0);
+}
+
+.circle__outer .poly5 {
+  transform: rotate(280deg);
+  background-color: rgb(255, 121, 121);
+}
+button {
+  position: absolute;
+  z-index: 99;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+.spin__start {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
     transform: rotate(360deg);
   }
 }
