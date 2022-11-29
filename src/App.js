@@ -1,33 +1,36 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState ,useRef} from "react";
 import "./App.css";
 
 function App() {
-  const [spin, setSpin] = useState("");
+//   const [spin, setSpin] = useState("");
 
+  const cirlce=useRef(null);
+  const btn=useRef(null);
+  
   const handleSpin = () => {
-    let circle = document.querySelector(".circle__outer");
+//     let circle = document.querySelector(".circle__outer");
     let deg = Math.floor(Math.random() * 5000);
 
     console.log(circle);
-    circle.style.transition = "all 5s ease-out";
-    circle.style.transform = `rotate(${deg}deg)`;
-    deg = 0;
+    circle.current.style.transition = "all 5s ease-out";
+    circle.current.style.transform = `rotate(${deg}deg)`;
+    btn.current.style.pointerEvents="none";
 
-    // circle.addEventListener("transitionend", () => {
-    //   circle.style.transition = "none";
-    //   let actualDeg = deg % 360;
-
-    //   circle.style.transform = `rotate(${actualDeg}deg)`;
-    // });
+    circle.current.addEventListener("transitionend", () => {
+      circle.current.style.transition = "none";
+      circle.current.style.transform = "rotate(0deg)";
+      btn.current.style.pointerEvents="auto";
+      
+    });
   };
 
   return (
     <div className="App">
       <div class="circle__main">
-        <button className="spinBtn" onClick={handleSpin}>
+        <button ref={btn} className="spinBtn" onClick={handleSpin}>
           SPIN
         </button>
-        <div class={`circle__outer ${spin}`}>
+        <div ref={circle} class="circle__outer">
           <div class="poly1">1</div>
           <div class="poly2">2</div>
           <div class="poly3">3</div>
